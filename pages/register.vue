@@ -13,8 +13,8 @@
             </el-form-item>
             <el-form-item label="邮箱" prop="email">
                 <el-input v-model="ruleForm.email"></el-input>
-                <span class="status">{{statusMsg}}</span>
                 <el-button size="mini" round @click="sendMsg">发送验证码</el-button>
+                <span class="status">{{statusMsg}}</span>
             </el-form-item>
             <el-form-item label="验证码" prop="code">
                 <el-input v-model="ruleForm.code" maxlength="4"></el-input>
@@ -26,7 +26,7 @@
                 <el-input v-model="ruleForm.cpwd" type="password"></el-input>
             </el-form-item>
             <el-form-item>
-                <el-button type="primary"  @click="register('ruleForm')">同意以下协议并注册</el-button>
+                <el-button type="primary"  @click="register()">同意以下协议并注册</el-button>
             </el-form-item>
             <el-form-item>
                 <a class="f1" href="http://www.meituan.com/about/terms" target="_blank">《美团网用户协议》</a>
@@ -34,8 +34,9 @@
             </el-form>
     </div>
 </template>
-
 <script>
+import axios from 'axios'
+import CryptoJS from 'crypto-js'
 export default {
     layout:"blank",
     data(){
@@ -79,18 +80,69 @@ export default {
             }
         }
     },
-  methods: {
-      register(formName) {
-        this.$refs['ruleForm'].validate((valid) => {
-          if (valid) {
-            alert('submit!');
-          } else {
+    methods: {
+    register() {
+        let self=this;
+        self.$refs['ruleForm'].validate((valid) => {
+        if (valid) {
+            axios.post('/users/signup',{username:self.ruleForm.name,
+                                        password:self.ruleForm.pwd,
+                                        email:self.ruleForm.email,
+                                        code:self.ruleForm.code})
+            .then(({status,data})=>{
+                console.log('====================================')
+                console.log(res)
+                console.log('====================================')
+                if(status==200){
+                    if(data.code==0){
+                        location.href='/login'
+                    }
+                }else{
+                    self.error="服务器端出错"
+                }
+            })
+        } else {
             console.log('error submit!!');
             return false;
-          }
+        }
         });
-      },
-      sendMsg:function(){}
+        },
+        sendMsg:function(){
+        let namePass,emailPass;
+        let self=this;
+        if(self._timer){
+            return false
+        }
+        this.$refs['ruleForm'].validateField('name',(valid)=>{
+            namePass=valid
+            })
+        this.statusMsg=''
+        if(namePass){
+            return false
+        }
+        this.$refs['ruleForm'].validateField('email',(valid)=>{
+            emailPass=valid
+            })
+        if(!namePass&&!emailPass){
+            axios.post('/users/verify',
+                    {username:this.ruleForm.name,email:this.ruleForm.email})
+            .then(({status,data})=>{
+                if(status===200&&data&&data.code=="0"){
+                    let count=60;
+                    self.statusMsg=`验证码已发送，剩余${count--}秒`
+                    this._timer=setInterval(function(){ 
+                        self.statusMsg=`验证码已发送，剩余${count--}秒`
+                        if(count<=0){
+                            self.statusMsg=""
+                            clearInterval(this._timer)
+                        }
+                    },1000)
+                }else{
+                    self.statusMsg=data.message
+                }
+            })
+        }
+    }
     }
 }
 </script>
@@ -100,7 +152,6 @@ export default {
     padding-left:275px;
     line-height: 60px;
     padding-bottom:10px;
-    
     .register-header{
         height:60px;
         overflow: hidden;
