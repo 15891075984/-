@@ -56,15 +56,18 @@ export default {
                 email:[
                     {required:true,type:"email",message:"请输入邮箱",trigger:"blur"}
                 ],
+                code:[
+                    {required:true,message:"输入验证码",trigger:"blur"}
+                ],
                 pwd:[
                     {required:true,message:"创建密码",trigger:"blur"}
                 ],
                 cpwd:[
                     {required:true,message:"确认密码",trigger:"blur"},
-                    {validtator:(rule,value,callback)=>{
+                    {validator:(rule,value,callback)=>{
                         if(value===""){
                             callback(new Error("请再次输入密码"))
-                        }else if(value!==this.pwd){
+                        }else if(value!==this.ruleForm.pwd){
                             callback(new Error("两次输入密码不一致"))
                         }else{
                             callback()
@@ -77,27 +80,17 @@ export default {
         }
     },
   methods: {
-      register:()=>{
-          console.log('====================================')
-          console.log(this.$refs)
-          console.log('====================================')
+      register(formName) {
+        this.$refs['ruleForm'].validate((valid) => {
+          if (valid) {
+            alert('submit!');
+          } else {
+            console.log('error submit!!');
+            return false;
+          }
+        });
       },
-    //   register(formName) {
-    //       console.log('====================================')
-    //       console.log(this.$refs)
-    //       console.log('====================================')
-    //     // this.$refs['ruleForm'].validate((valid) => {
-    //     //   if (valid) {
-    //     //     alert('submit!');
-    //     //   } else {
-    //     //     console.log('error submit!!');
-    //     //     return false;
-    //     //   }
-    //     // });
-    //   },
-      resetForm(formName) {
-        this.$refs[formName].resetFields();
-      }
+      sendMsg:function(){}
     }
 }
 </script>
