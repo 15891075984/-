@@ -30,7 +30,8 @@ module.exports = {
   css: [
     'element-ui/lib/theme-chalk/reset.css',
     'element-ui/lib/theme-chalk/index.css',
-    '@/assets/css/main.css'
+    '@/assets/css/main.css',
+    'swiper/dist/css/swiper.css'
   ],
 
   /*
@@ -39,7 +40,10 @@ module.exports = {
   plugins: [{
     src:'@/plugins/element-ui',
     ssr:true,
-  }
+  },
+  { src: '~/plugins/swiper.js', 
+    ssr: false 
+  },
     
     
   ],

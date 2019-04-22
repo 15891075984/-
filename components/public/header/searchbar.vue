@@ -8,7 +8,7 @@
                 <div class="wrapper">
                     <el-input placeholder="搜索商家或地点" class="input"  v-model="search" @focus="inputFocus" @blur="inputBlur">
                     </el-input><el-button type="primary" class="btn">
-                        <i class="el-icon-search"></i>
+                        <i class="iconfont">&#xe6d8;</i>
                     </el-button>
                         <dl v-if="isCommand" class='command'>
                             <dd v-for="item in command" :key="item.id">

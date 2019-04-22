@@ -210,7 +210,7 @@ export default {
         box-sizing: border-box;
         top:50px;
         left:228px;
-        height:395px;
+        height:397px;
         bottom:0;
         width: 378px;
         padding:15px;

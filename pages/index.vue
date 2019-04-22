@@ -1,20 +1,36 @@
 <template>
   <section class="container">
     <el-row>
-      <el-col :span="5">
+      <el-col :span="4">
         <MMenu/>
       </el-col>
-      <el-col :span="19">2</el-col>
+      <el-col :span="10">
+        <Swiper/>
+      </el-col>
+      <el-col :span="10">
+        <Login/>
+      </el-col>
+    </el-row>
+    <el-row>
+      <el-col :span="21">
+        <Content/>
+      </el-col>
     </el-row>
   </section>
 </template>
 
 <script>
 import MMenu from '../components/index/menu.vue'
+import Swiper from '../components/index/swiper'
+import Login from '../components/index/login.vue'
+import Content from '../components/index/content'
 
 export default {
   components: {
-    MMenu
+    MMenu,
+    Swiper,
+    Login,
+    Content
   }
 }
 </script>
