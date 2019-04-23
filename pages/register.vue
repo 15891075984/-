@@ -31,7 +31,7 @@
             <el-form-item>
                 <a class="f1" href="http://www.meituan.com/about/terms" target="_blank">《美团网用户协议》</a>
             </el-form-item>
-            </el-form>
+        </el-form>
     </div>
 </template>
 <script>
@@ -41,7 +41,9 @@ export default {
     layout:"blank",
     data(){
         return {
+            count:60,
             statusMsg: '',
+            timer:'',
             error: '',
             ruleForm: {
                 name: '',
@@ -90,9 +92,6 @@ export default {
                                         email:self.ruleForm.email,
                                         code:self.ruleForm.code})
             .then(({status,data})=>{
-                console.log('====================================')
-                console.log(res)
-                console.log('====================================')
                 if(status==200){
                     if(data.code==0){
                         location.href='/login'
@@ -102,7 +101,6 @@ export default {
                 }
             })
         } else {
-            console.log('error submit!!');
             return false;
         }
         });
@@ -110,31 +108,34 @@ export default {
         sendMsg:function(){
         let namePass,emailPass;
         let self=this;
-        if(self._timer){
+        if(this.timer){
             return false
         }
-        this.$refs['ruleForm'].validateField('name',(valid)=>{
+        self.$refs['ruleForm'].validateField('name',(valid)=>{
             namePass=valid
             })
-        this.statusMsg=''
+        self.statusMsg=''
         if(namePass){
             return false
         }
-        this.$refs['ruleForm'].validateField('email',(valid)=>{
+        self.$refs['ruleForm'].validateField('email',(valid)=>{
             emailPass=valid
             })
         if(!namePass&&!emailPass){
-            axios.post('/users/verify',
-                    {username:this.ruleForm.name,email:this.ruleForm.email})
+            axios.post('/users/verify',{
+                username:this.ruleForm.name,
+                email:this.ruleForm.email
+                })
             .then(({status,data})=>{
                 if(status===200&&data&&data.code=="0"){
-                    let count=60;
+                    let count=10;
                     self.statusMsg=`验证码已发送，剩余${count--}秒`
-                    this._timer=setInterval(function(){ 
+                        this.timer=setInterval(()=>{
                         self.statusMsg=`验证码已发送，剩余${count--}秒`
-                        if(count<=0){
-                            self.statusMsg=""
-                            clearInterval(this._timer)
+                        if(count<0){
+                            self.statusMsg="";
+                            clearInterval(this.timer);   //clearInterval清除完,打印出来this.timer是数字
+                            this.timer="";  //需要清除一下数字才生效
                         }
                     },1000)
                 }else{

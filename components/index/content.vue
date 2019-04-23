@@ -3,7 +3,7 @@
         <div class="m-content-header">
             <h4>{{data.headline}}</h4>
             <ul>
-                <li v-for="item in getTitles" :key="item.type"
+                <li v-for="(item,index) in getTitles" :key="index"
                         @mouseenter="enterTitle">
                     {{item.title}}
                 </li>
@@ -109,7 +109,6 @@ export default {
                 let {data}=res.data
                 this.data=data;
             })
-           
         }
     }
 

@@ -5,7 +5,6 @@ const User =require( '../dbs/models/users')
 const Passport =require( './utils/passport')
 const Email =require( '../dbs/config')
 const axios =require( './utils/axios')
-
 let router=new Router({
     prefix:"/users"
 })
@@ -49,30 +48,37 @@ router.post('/signup',async(ctx)=>{
         password,
         email
     })
-    // console.log(nuser)
-    // if(nuser){
-    //     let res=await axios.post('/users/signin',{
-    //         username,
-    //         password
-    //     })
-    //     if(res.data&&res.data.code===0){
-    //         ctx.body={
-    //             code:0,
-    //             msg:"注册成功",
-    //             user:res.data.user
-    //         }
-    //     }else{
-    //         ctx.body={
-    //             code:-1,
-    //             msg:"error"
-    //         }
-    //     }
-    // }else{
-    //     ctx.body={
-    //         code:-1,
-    //         msg:"注册失败"
-    //     }
-    // }
+    console.log(nuser)
+    ctx.body={
+        code:0
+    }
+    if(nuser){
+        let res=axios.post('/users/signin',{
+            username,
+            password
+        }).then(res=>{
+            ctx.body={
+                code:0
+            }
+        })
+        // if(res.data&&res.data.code===0){
+        //     ctx.body={
+        //         code:0,
+        //         msg:"注册成功",
+        //         user:res.data.user
+        //     }
+        // }else{
+        //     ctx.body={
+        //         code:-1,
+        //         msg:"error"
+        //     }
+        // }
+    }else{
+        ctx.body={
+            code:-1,
+            msg:"注册失败"
+        }
+    }
 })
 router.post('/signin',async (ctx,next)=>{
     return Passport.authenticate('local',function(err,user,info,status){

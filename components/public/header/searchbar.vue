@@ -154,6 +154,7 @@ export default {
             box-sizing: border-box;
             background:#fff;
             position: absolute;
+            z-index:99;
             border-top:0 solid #eee;
             line-height: 25px;
             dd{
@@ -184,7 +185,7 @@ export default {
         }
         &>span:hover{
             a{
-                   color: #31BBAC;
+                color: #31BBAC;
             }
         }
         a{

@@ -11,7 +11,8 @@ const passport =require('./interface/utils/passport')
 const users =require('./interface/users')
 const app = new Koa()
 const host = process.env.HOST || '127.0.0.1';
-const port = process.env.PORT || 3000
+const port = process.env.PORT || 3000;
+const geo=require('./interface/geo')
 app.keys=['mt','keyskeys']
 app.proxy=true
 app.use(session({key:'mt',prefix:'mt:uid',store:new Redis()}))  //session处理
@@ -42,6 +43,7 @@ async function start() {
     await nuxt.ready()
   }
   app.use(users.routes()).use(users.allowedMethods())
+  app.use(geo.routes()).use(geo.allowedMethods())
   app.use(ctx => {
     ctx.status = 200
     ctx.respond = false // Bypass Koa's built-in response handling
