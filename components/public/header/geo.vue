@@ -1,7 +1,7 @@
 <template>
     <div class="m-geo">
        <i class="iconfont">&#xe633;</i>
-        <span>{{this.geo}}</span>
+        <span>{{this.$store.state.geo.position.geo}}</span>
         <nuxt-link to='/changecity' class="geo-changeCity">切换城市</nuxt-link>[
         <nuxt-link to='/changecity' class='geo-item'>大厂回族自治县</nuxt-link>
         <nuxt-link to='/changecity' class='geo-item'>廊坊</nuxt-link>
@@ -20,18 +20,20 @@ export default {
     },
     methods:{
         getProvince(){
-        axios.get("/geo/province")
-        .then(({data,status})=>{
-            let random=Math.floor(Math.random()*19)
-            this.data=data.province,
-            this.geo=this.data[random].name
-        },(err)=>{
-            console.log(err.message)
-        })
+            axios.get("/geo/province")
+            .then(({data,status})=>{
+                let random=Math.floor(Math.random()*19)
+                this.data=data.province,
+                this.$store.state.geo.setPosition(this.data[random].name)
+                // this.geo=this.data[random].name
+            },(err)=>{
+                console.log(err.message)
+            })
         },
         getCity(){
             axios.get('/geo/city')
             .then(res=>{
+                // this.$store.state.geo.setPosition(res.cities)
             })
         }
     },
