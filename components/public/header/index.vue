@@ -1,7 +1,7 @@
 <template >
-   <div>
+   <div class="my-header">
      <top-bar/>
-     <search-bar/>
+     <search-bar style="marginLeft:67px"/>
    </div>
 </template>
 
@@ -16,6 +16,9 @@ export default {
 }
 </script>
 
-<style>
+<style lang='scss'>
+.my-header{
+  // padding-left:70px;
+}
 
 </style>

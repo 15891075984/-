@@ -31,7 +31,7 @@ components:{
 .m-header{
   line-height: 50px;
   font-size: 12px;
-  padding-left: 150px;
+  padding-left: 220px;
   background: #f8f8f8;
   color:#666;
 }

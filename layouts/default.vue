@@ -7,16 +7,18 @@
       <nuxt/>
     </el-main>
     <el-footer>
-      Footer
+      <MFooter/>
     </el-footer>
 </el-container>
 </template>
 <script>
 import MyHeader from '@/components/public/header/index.vue'
+import MFooter from '@/components/public/footer/footer.vue'
 import '@/assets/font/iconfont.css'
 export default {
   components: {
-    MyHeader
+    MyHeader,
+    MFooter
   }
 }
 </script>
@@ -26,7 +28,6 @@ export default {
 }
 a{
   text-decoration: none;
-  
 }
 li{
   list-style: none;

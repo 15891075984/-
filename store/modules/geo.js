@@ -1,6 +1,6 @@
 const state=()=>({
     position:{
-        geo:"北京"
+        geo:"三亚"
     }
 })
 const mutations={
