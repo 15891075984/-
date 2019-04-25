@@ -23,8 +23,8 @@ export default {
             axios.get("/geo/province")
             .then(({data,status})=>{
                 let random=Math.floor(Math.random()*19)
-                this.data=data.province,
-                this.$store.state.geo.setPosition(this.data[random].name)
+                this.data=data.province
+                // this.$store.state.geo.setPosition(this.data[random].name)
                 // this.geo=this.data[random].name
             },(err)=>{
                 console.log(err.message)

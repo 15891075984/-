@@ -7,7 +7,7 @@
         <div class="m-index-register">
             <img src="http://s0.meituan.net/bs/fe-web-meituan/2d05c2b/img/avatar.jpg" alt="">
             <p>Hi!你好</p>
-            <p><el-button>注册</el-button></p>
+            <p><el-button @click="Position">注册</el-button></p>
             <p><el-button>立即登录</el-button></p>
         </div>
         <div class="m-index-erweima">
@@ -22,7 +22,11 @@
 
 <script>
 export default {
-
+    methods:{
+        Position(){
+            this.$store.state.geo.position.dispatch("setPosition",'北京')
+        }
+    }
 }
 </script>
 

@@ -48,7 +48,6 @@ router.post('/signup',async(ctx)=>{
         password,
         email
     })
-    console.log(nuser)
     ctx.body={
         code:0
     }

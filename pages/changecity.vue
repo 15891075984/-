@@ -24,10 +24,8 @@ export default {
         Spinyin
     },
     mounted(){
-        
         axios.get('/geo/city')
         .then(({status,data})=>{
-             console.log(this.cities);
             if(status==200){
                 this.cities=data.cities;
                 this.hotCity=this.cities[6]['value'].slice(2,6);

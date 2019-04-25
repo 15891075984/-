@@ -6,7 +6,7 @@
             </el-col>
             <el-col :span="10">
                 <div class="wrapper">
-                    <el-input placeholder="搜索商家或地点" class="input"  v-model="search" @focus="inputFocus" @blur="inputBlur">
+                    <el-input placeholder="搜索商家或地点" class="input"  v-model="search" @input='inputSearch' @focus="inputFocus" @blur="inputBlur">
                     </el-input><el-button type="primary" class="btn">
                         <i class="iconfont">&#xe6d8;</i>
                     </el-button>
@@ -38,70 +38,17 @@
 </template>
 
 <script>
+import axios  from '@/static/axios'
 export default {
+    props:{
+        hotSearch:{
+            type:String,
+            default:[]
+        }
+    },
     data:function(){
         return {
-            command:[
-                {
-                    title:"北京欢乐谷",
-                    link:"/123",
-                    id:1,
-                }, {
-                    title:"北京欢乐谷",
-                    link:"/123",
-                    id:2,
-                }, {
-                    title:"北京欢乐谷",
-                    link:"/123",
-                    id:3
-                }, {
-                    title:"北京欢乐谷",
-                    link:"/123",
-                    id:4
-                }, {
-                    title:"北京欢乐谷",
-                    link:"/123",
-                    id:5
-                }, {
-                    title:"北京欢乐谷",
-                    link:"/123",
-                    id:6
-                }, {
-                    title:"北京欢乐谷",
-                    link:"/123",
-                    id:7
-                }, {
-                    title:"北京欢乐谷",
-                    link:"/123",
-                    id:8
-                }, {
-                    title:"北京欢乐谷",
-                    link:"/123",
-                    id:9
-                },
-            ],
-            hotSearch:[
-                {
-                    title:"故宫博物院",
-                    link:"/123",
-                    id:11
-                },{
-                    title:"故宫博物院",
-                    link:"/123",
-                    id:12
-                },{
-                    title:"故宫博物院",
-                    link:"/123",
-                    id:13
-                },{
-                    title:"故宫博物院",
-                    link:"/123",
-                    id:14
-                },{
-                    title:"故宫博物院",
-                    link:"/123",
-                    id:15
-                }],
+            command:[],
             search:'',
             isFocus:false
         }
@@ -114,6 +61,33 @@ export default {
             setTimeout(()=>{
                 this.isFocus=false
             },200)
+        },
+        inputSearch(){
+            let self=this;
+            clearTimeout(self.timer)
+            self.timer=setTimeout(function(){
+                axios.get('/search/top',{
+                params:{
+                    city:self.$store.state.geo.position.geo,
+                    name:self.search
+                }
+            })
+                .then(({status,data:{code,top}})=>{
+                    if(status===200&&code===0){
+                        let data=[];
+                        top.map((item,index)=>{
+                            data.push(
+                                {
+                                    title:item.name,
+                                    link:`/${item.name}`,
+                                    id:item.name.toString()
+                                }
+                            )
+                        })
+                        self.command=data;
+                    }
+                })
+                },200)
         }
     },
     computed:{
