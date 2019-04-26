@@ -27,15 +27,12 @@ export default {
           this.hotSearch.push(
             {
               title:item.name,
-              link:`/${item.name}`,
+              link:`/s/${item.name}`,
               id:item.id
             }
           )
         })
       }
-      console.log('====================================');
-      console.log(this.hotSearch);
-      console.log('====================================');
     })
   },
   components:{

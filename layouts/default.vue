@@ -12,6 +12,7 @@
 </el-container>
 </template>
 <script>
+import 'element-ui/lib/theme-chalk/index.css';
 import MyHeader from '@/components/public/header/index.vue'
 import MFooter from '@/components/public/footer/footer.vue'
 import '@/assets/font/iconfont.css'

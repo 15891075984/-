@@ -1,10 +1,10 @@
 <template>
-    <div class="product-wrapper">
+    <div class="detail-wrapper">
         <el-row>
             <el-col :span="20">
-                <Crumb :keyword="keyword"/>
-                <Categroy/>
-                <List/>
+                <Crumb :keyword="keyword" :keyword2="keyword2"/>
+                <Card/>
+                <item/>
             </el-col>
         </el-row>
     </div>
@@ -12,29 +12,27 @@
 
 <script>
 import Crumb from '@/components/product/crumb'
-import Categroy from '@/components/product/categroy'
-import List from '@/components/product/list'
+import Card from '@/components/detail/card'
+import item from '@/components/detail/item'
 export default {
     components:{
         Crumb,
-        Categroy,
-        List
+        Card,
+        item
     },
     data(){
         return {
-            keyword:"火锅"
+            keyword:"火锅",
+            keyword2:"美食"
         }
     }
 }
 </script>
 
 <style lang='scss'>
-.product-wrapper{
+.detail-wrapper{
     margin-top:100px;
     padding-left:200px;
-    dl{
-        padding-bottom:15px;
-    }
 }
 
 </style>

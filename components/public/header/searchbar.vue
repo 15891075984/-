@@ -2,7 +2,9 @@
     <div class="m-search-panel">
         <el-row :gutter='0'>
             <el-col :span="5">
-                <img class='logo' src="//s0.meituan.net/bs/fe-web-meituan/e5eeaef/img/logo.png" alt="美团">
+                <nuxt-link to="/">
+                    <img class='logo' src="//s0.meituan.net/bs/fe-web-meituan/e5eeaef/img/logo.png" alt="美团">
+                </nuxt-link>
             </el-col>
             <el-col :span="10">
                 <div class="wrapper">
@@ -79,7 +81,7 @@ export default {
                             data.push(
                                 {
                                     title:item.name,
-                                    link:`/${item.name}`,
+                                    link:`/s/${item.name}`,
                                     id:item.name.toString()
                                 }
                             )
