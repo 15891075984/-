@@ -1,24 +1,32 @@
 <template>
     <div class="m-user">
         <div class="as-user" v-if="this.$store.state.user.info.login">
-            <nuxt-link to='/login' class="user-info">{{this.$store.state.user.info.username}}</nuxt-link>
-            <nuxt-link to='/register' >退出</nuxt-link>
+            <span href='/login' class="user-info">{{this.$store.state.user.info.username}}</span>
+            <span  @click="loginOutBtn">退出</span>
         </div>
         <div class="no-user" v-else>
-            <nuxt-link to='/login' >立即登录</nuxt-link>
-            <nuxt-link to='/register' class="fast-register">注册</nuxt-link>
+            <a href='/login' >立即登录</a>
+            <a href='/register' >注册</a>
         </div>
         
     </div>
 </template>
 
 <script>
+import { mapActions } from 'vuex'
 export default {
     data(){
         return {
-            user:""
+            ss:""
         }
-    }
+    },
+    methods:{
+        ...mapActions('user',['loginOut','loginIn']),
+        ...mapActions('geo',['setPosition']),
+        loginOutBtn(){
+             this.loginOut()
+        }
+        }
 }
 </script>
 

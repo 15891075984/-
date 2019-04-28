@@ -1,10 +1,10 @@
 # STATIC
 
-**This directory is not required, you can delete it if you don't want to use it.**
+**This directory is not required, you can delete it if you don't want :href use it.**
 
 This directory contains your static files.
-Each file inside this directory is mapped to `/`.
-Thus you'd want to delete this README.md before deploying to production.
+Each file inside this directory is mapped :href `/`.
+Thus you'd want :href delete this README.md before deploying :href production.
 
 Example: `/static/robots.txt` is mapped as `/robots.txt`.
 

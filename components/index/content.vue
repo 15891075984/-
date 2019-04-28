@@ -4,7 +4,7 @@
             <h4>{{data.headline}}</h4>
             <ul>
                 <li v-for="(item,index) in getTitles" :key="index"
-                        @mouseenter="enterTitle">
+                        @mouseenter="enterTitle(index)">
                     {{item.title}}
                 </li>
             </ul>
@@ -102,13 +102,28 @@ export default {
             return this.data.contents
         }
     },
-      methods:{
-        enterTitle:function(){
-            let data= axios.get('https://easy-mock.com/mock/5c36dfeabb16d01c71935e97/example_copy_copy_copy/jihui')
+    mounted(){
+        let data= axios.get('https://easy-mock.com/mock/5c36dfeabb16d01c71935e97/example_copy_copy_copy/jihui2')
             .then(res=>{
                 let {data}=res.data
                 this.data=data;
             })
+    },
+    methods:{
+        enterTitle:function(index){
+            if(index%2==1){
+                let data= axios.get('https://easy-mock.com/mock/5c36dfeabb16d01c71935e97/example_copy_copy_copy/jihui')
+            .then(res=>{
+                let {data}=res.data
+                this.data=data;
+            })
+            }else{
+                let data= axios.get('https://easy-mock.com/mock/5c36dfeabb16d01c71935e97/example_copy_copy_copy/jihui2')
+            .then(res=>{
+                let {data}=res.data
+                this.data=data;
+            })
+            }
         }
     }
 

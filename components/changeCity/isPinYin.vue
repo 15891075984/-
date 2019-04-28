@@ -9,13 +9,14 @@
         <dd v-for="(item,index) in cities" :key="index" :id="item.first">
             <div class="circle" >{{item.first}}</div>
             <span v-for="(val,key) in item.value" :key="key" class="pinyin-item">
-                <nuxt-link :to="'/'+val.name" class='geo-item'>{{val.name}}</nuxt-link>
+                <span class='geo-item' @click="setPosition(val.name)">{{val.name}}</span>
             </span>
         </dd>
     </dl>
 </template>
 
 <script>
+import {mapActions} from 'vuex'
 import pinyin from "pinyin"
 import axios from '@/static/axios'
 export default {
@@ -32,6 +33,7 @@ export default {
         }
     },
     methods:{
+        ...mapActions('geo',['setPosition']),
         getCityPinyinList(){
             axios.get('/geo/citypinyin')
             .then(({status,data})=>{

@@ -5,7 +5,7 @@ const state=()=>({
 })
 const mutations={
     setPosition(state,value){
-        state.position=value
+        state.position.geo=value
     }
 }
 const actions={

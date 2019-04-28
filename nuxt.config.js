@@ -35,7 +35,7 @@ module.exports = {
   ],
 
   /*
-  ** Plugins to load before mounting the App
+  ** Plugins :href load before mounting the App
   */
   plugins: [{
     src:'@/plugins/element-ui',

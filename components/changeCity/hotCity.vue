@@ -2,12 +2,12 @@
     <dl class="hotcity">
         <dd>
             <span>{{this.title}} : </span>
-            <span v-for="item in hotCity" :key="item.id">{{item.name}}</span>
+            <span v-for="item in hotCity" :key="item.id" @click="setPosition(item.name)">{{item.name}}</span>
         </dd>
     </dl>
 </template>
-
 <script>
+import {mapActions} from 'vuex'
 export default {
     props:{
         title:{
@@ -19,7 +19,9 @@ export default {
             default:[]
         }
     },
-    
+    methods:{
+        ...mapActions('geo',['setPosition'])
+    }
 }
 </script>
 

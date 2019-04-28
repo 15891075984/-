@@ -79,29 +79,32 @@ router.post('/signup',async(ctx)=>{
         }
     }
 })
+router.get('/logout',(ctx,next)=>{
+    return ctx.body={
+        code:0,
+        msg:"登录退出"
+    }
+})
 router.post('/signin',async (ctx,next)=>{
-    return Passport.authenticate('local',function(err,user,info,status){
-        if(err){
+    let username=ctx.request.body.username;
+    let password=ctx.request.body.password;
+    await User.find({username,password},(err,doc)=>{
+        console.log('====================================');
+        console.log(err);
+        console.log(doc)
+        if(doc.length<=0){
             ctx.body={
                 code:-1,
-                msg:err
+                msg:"登录失败，此用户不存在"
             }
         }else{
-            if(user){
-                ctx.body={
-                    code:0,
-                    msg:"登录成功",
-                    user
-                }
-                return ctx.login(user)
-            }else{
-                ctx.body={
-                    code:1,
-                    msg:info
-                }
+            ctx.body={
+                code:0,
+                username:doc[0].username,
+                msg:"登录成功"
             }
         }
-    })(ctx,next)
+    })
 })
 router.post('/verify',async(ctx,next)=>{
     let username=ctx.request.body.username
@@ -130,7 +133,7 @@ router.post('/verify',async(ctx,next)=>{
     }
     let mailOptions={
         from:`认证邮件<${Email.smtp.user}>`,
-        to:ko.email,
+        href:ko.email,
         subject:`《白星星美团网全栈实战》注册码`,
         html:`您在《慕课网高仿美团网全栈实战》课程中注册，您的邀请码是${ko.code}`
     }

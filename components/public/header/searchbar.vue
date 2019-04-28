@@ -2,9 +2,9 @@
     <div class="m-search-panel">
         <el-row :gutter='0'>
             <el-col :span="5">
-                <nuxt-link to="/">
+                <a href="/">
                     <img class='logo' src="//s0.meituan.net/bs/fe-web-meituan/e5eeaef/img/logo.png" alt="美团">
-                </nuxt-link>
+                </a>
             </el-col>
             <el-col :span="10">
                 <div class="wrapper">
@@ -15,7 +15,7 @@
                         <dl v-if="isCommand" class='command'>
                             <dd v-for="item in command" :key="item.id">
                                 <span>
-                                    <nuxt-link :to="item.link">{{item.title}}</nuxt-link>
+                                    <a :href="item.link">{{item.title}}</a>
                                 </span>
                             </dd>
                         </dl>
@@ -23,14 +23,14 @@
                             <dt>热门搜索</dt>
                             <dd>
                                 <span v-for="item in hotSearch" :key="item.id">
-                                    <nuxt-link :to="item.link">{{item.title}}</nuxt-link>
+                                    <a :href="item.link">{{item.title}}</a>
                                 </span>
                             </dd>
                         </dl>
                 </div>
                 <p class="suggest">
                     <span v-for="item in hotSearch" :key="item.id">
-                        <nuxt-link :to="item.link">{{item.title}}</nuxt-link>
+                        <a :href="item.link">{{item.title}}</a>
                     </span>
                 </p>
             </el-col>

@@ -4,7 +4,9 @@
             <img src="//s0.meituan.net/bs/fe-web-meituan/e5eeaef/img/logo.png" alt="">
             <div class="right">
                 <span>已有美团账号</span>
-                <el-button type="small">登录</el-button>
+                <a href="/login">
+                    <el-button type="small">登录</el-button>
+                </a>
             </div>
         </div>
         <el-form :model="ruleForm" :rules="rules" ref="ruleForm" label-width="100px" class="demo-ruleForm">

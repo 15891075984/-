@@ -2,10 +2,10 @@
     <div class="m-geo">
        <i class="iconfont">&#xe633;</i>
         <span>{{this.$store.state.geo.position.geo}}</span>
-        <nuxt-link to='/changecity' class="geo-changeCity">切换城市</nuxt-link>[
-        <nuxt-link to='/changecity' class='geo-item'>大厂回族自治县</nuxt-link>
-        <nuxt-link to='/changecity' class='geo-item'>廊坊</nuxt-link>
-        <nuxt-link to='/changecity' class='geo-item'>固安县</nuxt-link>]
+        <a href='/changecity' class="geo-changeCity">切换城市</a>[
+        <a href='/changecity' class='geo-item'>大厂回族自治县</a>
+        <a href='/changecity' class='geo-item'>廊坊</a>
+        <a href='/changecity' class='geo-item'>固安县</a>]
     </div>
 </template>
 

@@ -2,53 +2,53 @@
     <div class="m-nav">
         <ul>
             <li class="list">
-                <nuxt-link to='/my'>我的美团</nuxt-link>
+                <a href='/my'>我的美团</a>
                 <dl>
                     <dd>
-                        <nuxt-link to='/my'>我的订单</nuxt-link>
+                        <a href='/my'>我的订单</a>
                     </dd>
                      <dd>
-                        <nuxt-link to='/my'>我的收藏</nuxt-link>
+                        <a href='/my'>我的收藏</a>
                     </dd>
                      <dd>
-                        <nuxt-link to='/my'>抵用券</nuxt-link>
+                        <a href='/my'>抵用券</a>
                     </dd>
                      <dd>
-                        <nuxt-link to='/my'>账户设置</nuxt-link>
+                        <a href='/my'>账户设置</a>
                     </dd>
                 </dl>    
             </li>
             <li class="list">
-                <nuxt-link to='/my'>手机APP</nuxt-link>
+                <a href='/my'>手机APP</a>
             </li>
             <li class="list">
-                <nuxt-link to='/my'>商家中心</nuxt-link>
+                <a href='/my'>商家中心</a>
                 <dl class="store">
                     <dd>
-                        <nuxt-link to='/my'>登录商家中心</nuxt-link>
+                        <a href='/my'>登录商家中心</a>
                     </dd>
                      <dd>
-                        <nuxt-link to='/my'>美团智能收银</nuxt-link>
+                        <a href='/my'>美团智能收银</a>
                     </dd>
                      <dd>
-                        <nuxt-link to='/my'>我想合作</nuxt-link>
+                        <a href='/my'>我想合作</a>
                     </dd>
                      <dd>
-                        <nuxt-link to='/my'>手机免费开店</nuxt-link>
+                        <a href='/my'>手机免费开店</a>
                     </dd>
                      <dd>
-                        <nuxt-link to='/my'>餐饮代理商招募</nuxt-link>
+                        <a href='/my'>餐饮代理商招募</a>
                     </dd>
                      <dd>
-                        <nuxt-link to='/my'>商家申请开票</nuxt-link>
+                        <a href='/my'>商家申请开票</a>
                     </dd>
                      <dd>
-                        <nuxt-link to='/my'>免费合作美团排队</nuxt-link>
+                        <a href='/my'>免费合作美团排队</a>
                     </dd>
                 </dl>    
             </li>
             <li class="list">
-                <nuxt-link to='/my'>网站导航</nuxt-link>
+                <a href='/my'>网站导航</a>
                  <dl class="www-nav" style="">
                          <ul>
                              <li>

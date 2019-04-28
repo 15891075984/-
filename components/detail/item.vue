@@ -14,9 +14,7 @@
                     </p>
                     </div>
                 <div class="shopping">
-                    <nuxt-link :to="'/order/老北京火锅购物车'">
                         <el-button type='primary' @click='goShopping'>立即抢购</el-button>
-                    </nuxt-link>
                 </div>
             </dd>
             <dd>
@@ -30,7 +28,7 @@
                     </p>
                     </div>
                 <div class="shopping">
-                    <el-button type='primary'>立即抢购</el-button>
+                    <el-button type='primary' @click='goShopping'>立即抢购</el-button>
                 </div>
             </dd>
             <dd>
@@ -44,7 +42,7 @@
                     </p>
                     </div>
                 <div class="shopping">
-                    <el-button type='primary'>立即抢购</el-button>
+                    <el-button type='primary' @click='goShopping'>立即抢购</el-button>
                 </div>
             </dd>
         </dl>
@@ -60,7 +58,7 @@ export default {
     },
     methods:{
         goShopping(){
-            window.location.href=`/order/?id=老北京购物车`
+            window.location.href=`/order`
         }
     }
 }
